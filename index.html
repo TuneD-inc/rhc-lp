@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RHC｜学生の本音をもとにした採用プレゼン添削サービス</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0e1f38;
+      --orange: #e8531a;
+      --orange-pale: #fdf2ec;
+      --sand:   #f5f2ee;
+      --white:  #ffffff;
+      --ink:    #1a1714;
+      --mid:    #4a4540;
+      --muted:  #9a948e;
+      --border: #e4e0da;
+      --r:      12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+    }
+
+    .logo {
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      color: var(--navy);
+    }
+    .logo-sub {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--muted);
+      margin-left: 10px;
+      letter-spacing: 0.03em;
+    }
+
+    .nav-cta {
+      background: var(--navy);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity .15s;
+    }
+    .nav-cta:hover { opacity: .8; }
+
+    /* ─── HERO ─── */
+    #hero {
+      padding-top: 60px;
+      min-height: 100vh;
+      background: var(--sand);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 80px 48px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 4.2vw, 54px);
+      font-weight: 900;
+      line-height: 1.22;
+      letter-spacing: -0.025em;
+      margin-bottom: 24px;
+      color: var(--navy);
+    }
+
+    h1 .accent { color: var(--orange); }
+
+    .hero-body {
+      font-size: 16px;
+      color: var(--mid);
+      line-height: 1.85;
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+
+    .hero-specs {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .spec-item { }
+    .spec-num {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .spec-num span { font-size: 15px; font-weight: 700; }
+    .spec-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .hero-actions { display: flex; align-items: center; gap: 20px; }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 15px 32px;
+      border-radius: 7px;
+      text-decoration: none;
+      transition: opacity .15s;
+    }
+    .btn-primary:hover { opacity: .85; }
+
+    .btn-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--mid);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+    }
+    .btn-text:hover { color: var(--ink); border-color: var(--ink); }
+
+    /* HERO CARD */
+    .hero-card {
+      background: var(--navy);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+
+    .hcard-top {
+      padding: 28px 28px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hcard-event {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hcard-heading {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.55;
+    }
+
+    .hcard-context {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 8px;
+      line-height: 1.65;
+    }
+
+    .hcard-results {
+      padding: 20px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hcard-result {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .hcard-result-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .hcard-result-text {
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+    }
+
+    .hcard-result-text strong {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .hcard-footer {
+      padding: 14px 28px;
+      background: rgba(255,255,255,0.04);
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .hcard-dot {
+      width: 6px; height: 6px;
+      background: #4ade80;
+      border-radius: 50%;
+    }
+
+    /* ─── SECTION COMMONS ─── */
+    section { padding: 100px 48px; }
+
+    .wrap { max-width: 1080px; margin: 0 auto; }
+
+    .sec-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 900;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+
+    .sec-lead {
+      font-size: 16px;
+      color: var(--mid);
+      line-height: 1.85;
+      max-width: 560px;
+    }
+
+    /* ─── PAIN ─── */
+    #pain { background: var(--white); }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      margin-top: 56px;
+    }
+
+    .pain-item {
+      background: var(--white);
+      padding: 32px 28px;
+    }
+
+    .pain-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .pain-text {
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.7;
+      font-weight: 500;
+    }
+
+    /* ─── WHY NOW ─── */
+    #why-now {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    #why-now h2 { color: var(--white); }
+    #why-now .sec-lead { color: rgba(255,255,255,0.55); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 56px;
+      align-items: start;
+    }
+
+    .change-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+
+    .change-item {
+      padding: 22px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .change-item:last-child { border-bottom: none; }
+
+    .change-icon { font-size: 18px; margin-top: 2px; flex-shrink: 0; }
+
+    .change-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 3px;
+    }
+
+    .change-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+
+    .insight-box {
+      background: var(--orange);
+      border-radius: var(--r);
+      padding: 36px 32px;
+    }
+
+    .insight-box h3 {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.45;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .insight-box p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.85;
+    }
+
+    /* ─── SERVICE ─── */
+    #service { background: var(--sand); }
+
+    .service-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-top: 56px;
+    }
+
+    .deliverable-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .deliverable-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .deliverable-item:first-child { border-top: 1px solid var(--border); }
+
+    .d-num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: 0.06em;
+      margin-top: 3px;
+      flex-shrink: 0;
+      width: 24px;
+    }
+
+    .d-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 5px;
+    }
+
+    .d-desc {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+
+    .service-summary {
+      background: var(--white);
+      border-radius: var(--r);
+      padding: 36px;
+      border: 1px solid var(--border);
+    }
+
+    .summary-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .summary-stat {
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    .summary-stat:last-of-type { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+    .summary-stat-num {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .summary-stat-num span { font-size: 22px; }
+    .summary-stat-label {
+      font-size: 13px;
+      color: var(--mid);
+      margin-top: 5px;
+    }
+
+    .summary-checks {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .summary-check {
+      font-size: 13px;
+      color: var(--mid);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .summary-check::before {
+      content: '';
+      width: 5px; height: 5px;
+      background: var(--orange);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ─── FLOW ─── */
+    #flow { background: var(--white); }
+
+    .flow-list {
+      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+
+    .flow-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+    .flow-item:last-child { border-bottom: none; }
+
+    .flow-meta {
+      padding: 28px 28px;
+      background: var(--sand);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .flow-step-num {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: 0.06em;
+    }
+
+    .flow-step-time {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .flow-step-time span { font-size: 14px; font-weight: 600; }
+
+    .flow-content {
+      padding: 28px 32px;
+      background: var(--white);
+    }
+
+    .flow-content h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .flow-content p {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.75;
+    }
+
+    /* ─── WHY US ─── */
+    #why-us { background: var(--sand); }
+
+    .why-us-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .why-us-card {
+      background: var(--white);
+      border-radius: var(--r);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .wuc-top {
+      padding: 28px 28px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .wuc-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .wuc-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+    }
+
+    .wuc-body {
+      padding: 24px 28px;
+    }
+
+    .wuc-body p {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .wuc-body p:last-of-type { margin-bottom: 0; }
+
+    .wuc-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .wuc-tag {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--mid);
+      background: var(--sand);
+      padding: 5px 12px;
+      border-radius: 5px;
+    }
+
+    /* ─── CASE ─── */
+    #case { background: var(--white); }
+
+    .case-box {
+      margin-top: 48px;
+      background: var(--navy);
+      border-radius: var(--r);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .case-left {
+      padding: 48px 44px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .case-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .case-left h3 {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.45;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .case-left p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.8;
+    }
+
+    .case-right {
+      padding: 48px 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .case-stat {
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .case-stat:last-child { padding-bottom: 0; border-bottom: none; }
+
+    .case-stat-num {
+      font-size: 44px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .case-stat-num span { font-size: 18px; font-weight: 600; }
+
+    .case-stat-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 6px;
+      line-height: 1.55;
+    }
+
+    /* ─── CTA ─── */
+    #cta {
+      background: var(--sand);
+      text-align: center;
+    }
+
+    #cta h2 { margin-bottom: 16px; }
+
+    #cta .sec-lead {
+      margin: 0 auto 48px;
+    }
+
+    .cta-card {
+      max-width: 560px;
+      margin: 0 auto;
+      background: var(--navy);
+      border-radius: var(--r);
+      padding: 44px 48px;
+    }
+
+    .cta-card h3 {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .cta-card p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+
+    .cta-btn {
+      display: block;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 7px;
+      text-decoration: none;
+      margin-bottom: 16px;
+      transition: opacity .15s;
+    }
+    .cta-btn:hover { opacity: .85; }
+
+    .cta-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.7;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy);
+      padding: 36px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 800px) {
+      header { padding: 0 20px; }
+      section { padding: 64px 20px; }
+
+      .hero-inner,
+      .why-grid,
+      .service-layout,
+      .why-us-grid,
+      .case-box { grid-template-columns: 1fr; gap: 32px; }
+
+      .pain-grid { grid-template-columns: 1fr; }
+      .flow-item { grid-template-columns: 1fr; }
+      .flow-meta { border-right: none; border-bottom: 1px solid var(--border); }
+
+      .cta-card { padding: 32px 24px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div>
+    <span class="logo">RHC</span>
+    <span class="logo-sub">Recruitment Health Check</span>
+  </div>
+  <a href="#cta" class="nav-cta">無料で相談する</a>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-kicker">Recruitment Health Check</div>
+      <h1>採用説明の<span class="accent">伝わり方</span>を、<br />学生のリアルな声で<br />変える。</h1>
+      <p class="hero-body">
+        母集団を増やす前に、今接触している学生への転換率を上げる。
+        学生モニターのフィードバックをもとに、御社の会社説明を根本から磨き上げます。
+      </p>
+      <div class="hero-specs">
+        <div class="spec-item">
+          <div class="spec-num">最短10<span>日</span></div>
+          <div class="spec-label">初回打ち合わせから納品まで</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-num">5<span>時間</span></div>
+          <div class="spec-label">担当者の合計工数</div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="#cta" class="btn-primary">無料で相談する</a>
+        <a href="#flow" class="btn-text">サービス詳細を見る</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hcard-top">
+        <div class="hcard-event">実績事例 ― 招待制就活イベント「SUPPIN」</div>
+        <div class="hcard-heading">学生30名・企業3社の<br />クローズド説明会で、<br />プレゼン添削後に起きたこと。</div>
+        <div class="hcard-context">大手志向の学生に対し、中小・ベンチャーが登壇。各社に事前の添削を実施した上で開催。</div>
+      </div>
+      <div class="hcard-results">
+        <div class="hcard-result">
+          <div class="hcard-result-icon">🏆</div>
+          <div class="hcard-result-text"><strong>登壇全企業が1名以上採用に成功。</strong>知名度に頼らず、伝え方だけで結果を出した。</div>
+        </div>
+        <div class="hcard-result">
+          <div class="hcard-result-icon">🤝</div>
+          <div class="hcard-result-text">30名の場で、<strong>1社あたり10件以上の面談</strong>が自然に生まれた。</div>
+        </div>
+        <div class="hcard-result">
+          <div class="hcard-result-icon">💬</div>
+          <div class="hcard-result-text"><strong>大手志向の学生が価値観を変えた。</strong>「こんな会社があるとは知らなかった」という声が毎回起きた。</div>
+        </div>
+      </div>
+      <div class="hcard-footer">
+        <div class="hcard-dot"></div>
+        複数回の開催で、毎回同様の成果を記録
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section id="pain">
+  <div class="wrap">
+    <div class="sec-kicker">Pain Points</div>
+    <h2>こんな悩み、ありませんか？</h2>
+    <p class="sec-lead">採用に力を入れているのに、なぜか結果につながらない。その原因は「リーチ数」よりも「伝わり方」にある可能性が高い。</p>
+    <div class="pain-grid">
+      <div class="pain-item">
+        <div class="pain-num">01</div>
+        <div class="pain-text">説明会に来てくれても、そのあとの選考に進んでくれない。</div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-num">02</div>
+        <div class="pain-text">話している手応えはあるのに、学生の反応がいまひとつ薄い。</div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-num">03</div>
+        <div class="pain-text">魅力はあるはずなのに、うまく言語化・表現できていない気がする。</div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-num">04</div>
+        <div class="pain-text">今の学生に何が刺さるのか、正直よくわからない。</div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-num">05</div>
+        <div class="pain-text">採用媒体でリーチを増やしても、コストばかりかかって転換率が改善しない。</div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-num">06</div>
+        <div class="pain-text">Z世代の価値観に合った伝え方にしたいが、何から手をつければいいかわからない。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY NOW -->
+<section id="why-now">
+  <div class="wrap">
+    <div class="sec-kicker">Why Now</div>
+    <h2>今、伝え方の改善が<br />最も費用対効果の高い採用施策です。</h2>
+    <p class="sec-lead">SNSの発展とAIの台頭により、若者の情報収集力は格段に上がっています。数で勝負する時代は終わり、どれだけ心が動いたかで選ばれる時代へ。</p>
+    <div class="why-grid">
+      <div class="change-list">
+        <div class="change-item">
+          <div class="change-icon">📱</div>
+          <div>
+            <div class="change-title">SNS社会で情報が溢れている</div>
+            <div class="change-desc">学生はあらゆる企業情報にアクセスできる。「知ってもらう」だけでは選ばれない。</div>
+          </div>
+        </div>
+        <div class="change-item">
+          <div class="change-icon">🤖</div>
+          <div>
+            <div class="change-title">AI普及で判断基準が変化</div>
+            <div class="change-desc">一般情報はAIで調べられる。「この会社でしか感じられない感動」が差別化になる。</div>
+          </div>
+        </div>
+        <div class="change-item">
+          <div class="change-icon">📉</div>
+          <div>
+            <div class="change-title">労働人口の減少が加速</div>
+            <div class="change-desc">若手獲得競争は激化の一途。今こそ「刺さる伝え方」への投資が求められている。</div>
+          </div>
+        </div>
+        <div class="change-item">
+          <div class="change-icon">🔄</div>
+          <div>
+            <div class="change-title">Z世代の価値観は別次元</div>
+            <div class="change-desc">働く意味、成長、共感。従来の「安定・給与・知名度」だけでは響かなくなっている。</div>
+          </div>
+        </div>
+      </div>
+      <div class="insight-box">
+        <h3>母集団を2倍にするより、転換率を2倍にする方が、体力がかからない。</h3>
+        <p>採用媒体への追加出稿でリーチを増やすアプローチは、コストが際限なく膨らみます。<br /><br />プレゼンテーションを一度磨けば、それは資産として使い続けられます。根拠ある改善で転換率を上げることが、最も持続可能な採用戦略です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE -->
+<section id="service">
+  <div class="wrap">
+    <div class="sec-kicker">Service</div>
+    <h2>3つの納品物で、<br />採用説明を資産に変える。</h2>
+    <p class="sec-lead">フィードバック収集から資料制作まで、丸ごとお任せください。</p>
+    <div class="service-layout">
+      <div class="deliverable-list">
+        <div class="deliverable-item">
+          <div class="d-num">01</div>
+          <div>
+            <div class="d-title">学生フィードバックレポート</div>
+            <div class="d-desc">学生モニターからの意見を匿名アンケートで回収し、定量化・可視化したレポート。「なぜ刺さらないのか」が数値とコメントで明確になります。</div>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <div class="d-num">02</div>
+          <div>
+            <div class="d-title">改善済みプレゼンテーション台本（PDF）</div>
+            <div class="d-desc">フィードバックをもとに作成した、Z世代に響く会社説明の台本。テキストベースで納品するため、社内での編集・共有も容易です。</div>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <div class="d-num">03</div>
+          <div>
+            <div class="d-title">スライド資料（プレゼン用）</div>
+            <div class="d-desc">台本の内容をビジュアルに落とし込んだスライドデータ。説明会・イベント・OB訪問など、様々な場面でそのまま使えます。</div>
+          </div>
+        </div>
+      </div>
+      <div class="service-summary">
+        <div class="summary-title">Overview</div>
+        <div class="summary-stat">
+          <div class="summary-stat-num">最短10<span>日</span></div>
+          <div class="summary-stat-label">初回打ち合わせから納品まで</div>
+        </div>
+        <div class="summary-stat">
+          <div class="summary-stat-num">5<span>時間</span></div>
+          <div class="summary-stat-label">担当者の合計工数（4回のオンライン打ち合わせ）</div>
+        </div>
+        <div class="summary-checks">
+          <div class="summary-check">すべてオンラインで完結</div>
+          <div class="summary-check">既存資料・HPがあれば活用可能</div>
+          <div class="summary-check">学生モニター5名のリアルな声</div>
+          <div class="summary-check">納品後も社内で使い続けられる資産に</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section id="flow">
+  <div class="wrap">
+    <div class="sec-kicker">Service Flow</div>
+    <h2>たった4ステップ、<br />5時間で完結。</h2>
+    <p class="sec-lead">御社担当者の負担は最小限。面倒な準備は不要です。</p>
+    <div class="flow-list">
+      <div class="flow-item">
+        <div class="flow-meta">
+          <div class="flow-step-num">STEP 01</div>
+          <div class="flow-step-time">1<span>時間</span></div>
+        </div>
+        <div class="flow-content">
+          <h3>現状ヒアリング＆資料共有</h3>
+          <p>サービスの進め方を確認し、既存の説明資料・ホームページ・SNSをご共有いただきます。現状の課題感や採用ターゲットをすり合わせ、今後の方針を決定します。</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-meta">
+          <div class="flow-step-num">STEP 02</div>
+          <div class="flow-step-time">1<span>時間</span></div>
+        </div>
+        <div class="flow-content">
+          <h3>学生5名に会社説明＆フィードバック収集</h3>
+          <p>御社指定の日程でオンライン説明会を開催。私たちが学生モニター5名をアサインします。説明後、学生から率直なフィードバックを匿名アンケートで収集します。</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-meta">
+          <div class="flow-step-num">STEP 03</div>
+          <div class="flow-step-time">2<span>時間</span></div>
+        </div>
+        <div class="flow-content">
+          <h3>レポート納品＆プレゼン内容の共同設計</h3>
+          <p>フィードバックレポートを解説しながら、「何をどう変えるか」を具体的に提案。御社の強みをヒアリングし、プレゼン台本の骨格をその場で設計します。（このステップのみ2時間）</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-meta">
+          <div class="flow-step-num">STEP 04</div>
+          <div class="flow-step-time">1<span>時間</span></div>
+        </div>
+        <div class="flow-content">
+          <h3>台本・スライド資料の納品＆説明</h3>
+          <p>完成した台本（PDF）とスライド資料を納品。どのように改善したかを丁寧にご説明します。次の説明会からすぐに使えます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why-us">
+  <div class="wrap">
+    <div class="sec-kicker">Why RHC</div>
+    <h2>なぜ私たちにできるのか。</h2>
+    <p class="sec-lead">根拠のない添削ではなく、リアルな学生の声と実績に裏付けられた改善を提供します。</p>
+    <div class="why-us-grid">
+      <div class="why-us-card">
+        <div class="wuc-top">
+          <div class="wuc-num">Reason 01</div>
+          <div class="wuc-title">学生と社会人、<br />両方の目線を持つチーム。</div>
+        </div>
+        <div class="wuc-body">
+          <p>運営メンバーは24〜25歳。ビジネスや企業を経験しつつ、学生というポジションを継続。就活支援イベント「SUPPIN」を10回以上主催し、企業と学生の双方を深く理解しています。</p>
+          <p>「企業が伝えたいこと」と「学生が聞きたいこと」のギャップを、当事者として埋めてきた実績があります。</p>
+          <div class="wuc-tags">
+            <span class="wuc-tag">学生×ビジネス経験</span>
+            <span class="wuc-tag">就活支援実績10回以上</span>
+            <span class="wuc-tag">プレゼン添削経験</span>
+          </div>
+        </div>
+      </div>
+      <div class="why-us-card">
+        <div class="wuc-top">
+          <div class="wuc-num">Reason 02</div>
+          <div class="wuc-title">学生の本音を引き出せる<br />プラットフォーム「モニバ」。</div>
+        </div>
+        <div class="wuc-body">
+          <p>自社で運営する学生向けサービス「モニバ（モニターバイト）」を活用。学生が思ったことを率直に話してくれる環境を、独自に構築しています。</p>
+          <p>ユーザーの9割はMARCH以上の学生。これまでの学生イベント主催を通じたネットワークで、質の高いフィードバックを担保します。</p>
+          <div class="wuc-tags">
+            <span class="wuc-tag">MARCH以上が9割</span>
+            <span class="wuc-tag">本音ベースのFB</span>
+            <span class="wuc-tag">自社プラットフォーム</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE -->
+<section id="case">
+  <div class="wrap">
+    <div class="sec-kicker">Case Study</div>
+    <h2>実績事例：「SUPPIN」</h2>
+    <div class="case-box">
+      <div class="case-left">
+        <div class="case-tag">Recruit Event — SUPPIN</div>
+        <h3>中小・ベンチャーが大手志向の学生の心を動かした。</h3>
+        <p>学生30名・企業3社のクローズド型就活交流会を複数回開催。登壇企業には事前にプレゼンテーションの確認・添削を実施。大手志向の学生に対して、知名度ではなく「伝え方」の力で魅力を届けた結果、毎回驚くべき成果が生まれました。</p>
+      </div>
+      <div class="case-right">
+        <div class="case-stat">
+          <div class="case-stat-num">100<span>%</span></div>
+          <div class="case-stat-label">登壇全企業が1名以上の採用を実現</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-num">10件<span>以上</span></div>
+          <div class="case-stat-label">1社あたりの面談数（参加30名の場で）</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-num">10回<span>以上</span></div>
+          <div class="case-stat-label">イベント開催実績。継続的な成果を確認</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="wrap">
+    <div class="sec-kicker">Contact</div>
+    <h2>御社の採用説明を、<br />資産に変えませんか。</h2>
+    <p class="sec-lead">一度磨いたプレゼンは、ずっと使い続けられます。まずは無料相談から、気軽にお問い合わせください。</p>
+    <div class="cta-card">
+      <h3>無料相談・お問い合わせ</h3>
+      <p>初回面談は無料です。現状の採用課題をお聞きし、RHCがどうお役に立てるかをご提案します。</p>
+      <a href="#contact" class="cta-btn">無料で相談する →</a>
+      <div class="cta-note">
+        完全オンライン対応　／　営業日2日以内に返信　／　相談後に強引な営業はありません
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">RHC</div>
+  <div class="footer-copy">© 2026 RHC. All Rights Reserved.</div>
+</footer>
+
+</body>
+</html>
