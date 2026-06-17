@@ -750,6 +750,118 @@
       line-height: 1.7;
     }
 
+    /* ─── FORM ─── */
+    .cta-form { text-align: left; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.05em;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 14px;
+      color: var(--white);
+      font-family: 'Noto Sans JP', sans-serif;
+      transition: border-color .15s;
+      outline: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--orange); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    .form-submit {
+      width: 100%;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      margin-bottom: 16px;
+      transition: opacity .15s;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .form-submit:hover { opacity: .85; }
+    .form-submit:disabled { opacity: .5; cursor: not-allowed; }
+
+    /* ─── THANKS ─── */
+    #thanks { display: none; text-align: center; }
+    #thanks.show { display: block; }
+
+    .thanks-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .thanks-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .thanks-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 36px;
+      line-height: 1.8;
+    }
+
+    .thanks-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .thanks-btn-primary {
+      display: block;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 24px;
+      border-radius: 7px;
+      text-decoration: none;
+      transition: opacity .15s;
+    }
+    .thanks-btn-primary:hover { opacity: .85; }
+
+    .thanks-btn-secondary {
+      display: block;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 13px 24px;
+      border-radius: 7px;
+      text-decoration: none;
+      transition: opacity .15s;
+    }
+    .thanks-btn-secondary:hover { opacity: .75; }
+
     /* ─── FOOTER ─── */
     footer {
       background: var(--navy);
@@ -1115,12 +1227,52 @@
     <h2>御社の採用説明を、<br />資産に変えませんか。</h2>
     <p class="sec-lead">一度磨いたプレゼンは、ずっと使い続けられます。まずは無料相談から、気軽にお問い合わせください。</p>
     <div class="cta-card">
-      <h3>無料相談・お問い合わせ</h3>
-      <p>初回面談は無料です。現状の採用課題をお聞きし、RHCがどうお役に立てるかをご提案します。</p>
-      <a href="#contact" class="cta-btn">無料で相談する →</a>
-      <div class="cta-note">
-        完全オンライン対応　／　営業日2日以内に返信　／　相談後に強引な営業はありません
+
+      <!-- フォーム -->
+      <div id="form-wrap">
+        <h3>無料相談・お問い合わせ</h3>
+        <p>初回面談は無料です。現状の採用課題をお聞きし、RHCがどうお役に立てるかをご提案します。</p>
+        <form id="contact-form" class="cta-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="company">会社名 <span style="color:var(--orange)">*</span></label>
+              <input type="text" id="company" name="company" placeholder="株式会社〇〇" required />
+            </div>
+            <div class="form-group">
+              <label for="name">お名前 <span style="color:var(--orange)">*</span></label>
+              <input type="text" id="name" name="name" placeholder="山田 太郎" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="email">メールアドレス <span style="color:var(--orange)">*</span></label>
+              <input type="email" id="email" name="email" placeholder="your@company.co.jp" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="message">お問い合わせ内容（任意）</label>
+              <textarea id="message" name="message" placeholder="採用説明会の現状や、気になっていることをご記入ください。"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="form-submit" id="submit-btn">無料で相談する →</button>
+          <div class="cta-note">
+            完全オンライン対応　／　営業日2日以内に返信　／　相談後に強引な営業はありません
+          </div>
+        </form>
       </div>
+
+      <!-- サンクスページ -->
+      <div id="thanks">
+        <div class="thanks-icon">✅</div>
+        <div class="thanks-title">送信が完了しました！</div>
+        <div class="thanks-sub">お問い合わせありがとうございます。<br />営業日2日以内にご連絡いたします。</div>
+        <div class="thanks-actions">
+          <a href="#hero" class="thanks-btn-primary" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ トップへ戻る</a>
+          <a href="https://suppin.netlify.app/" target="_blank" rel="noopener" class="thanks-btn-secondary">🎤 採用イベント「SUPPIN」にも興味がありますか？ →</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1130,6 +1282,38 @@
   <div class="footer-logo">RHC</div>
   <div class="footer-copy">© 2026 RHC. All Rights Reserved.</div>
 </footer>
+
+<script>
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = '送信中…';
+
+    const data = new FormData(this);
+    try {
+      const res = await fetch('https://formspree.io/f/xojzbokn', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        document.getElementById('form-wrap').style.display = 'none';
+        const thanks = document.getElementById('thanks');
+        thanks.classList.add('show');
+        document.getElementById('cta').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        btn.disabled = false;
+        btn.textContent = '無料で相談する →';
+        alert('送信に失敗しました。時間をおいて再度お試しください。');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = '無料で相談する →';
+      alert('通信エラーが発生しました。時間をおいて再度お試しください。');
+    }
+  });
+</script>
 
 </body>
 </html>
