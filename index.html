@@ -927,23 +927,105 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 800px) {
-      header { padding: 0 20px; }
-      section { padding: 64px 20px; }
 
-      .hero-inner,
+      /* ── Header ── */
+      header { padding: 0 16px; }
+      .logo-sub { display: none; }
+      .nav-cta { font-size: 12px; padding: 8px 14px; }
+
+      /* ── Sections ── */
+      section { padding: 56px 20px; }
+
+      /* ── Typography ── */
+      h1 { font-size: 32px; letter-spacing: -0.02em; }
+      h1 br { display: none; }
+      h2 { font-size: 26px; }
+      h2 br { display: none; }
+      .sec-lead { font-size: 14px; max-width: 100%; }
+
+      /* ── Hero ── */
+      .hero-inner {
+        padding: 40px 20px 48px;
+        gap: 36px;
+        grid-template-columns: 1fr;
+      }
+      .hero-body { font-size: 14px; max-width: 100%; margin-bottom: 28px; }
+      .hero-specs { gap: 20px; margin-bottom: 28px; }
+      .spec-num { font-size: 24px; }
+      .hero-actions { flex-direction: column; align-items: stretch; gap: 12px; }
+      .btn-primary { text-align: center; padding: 15px 24px; }
+      .btn-text { text-align: center; }
+
+      /* ── Hero Card ── */
+      .hcard-top { padding: 20px 20px 18px; }
+      .hcard-heading { font-size: 15px; }
+      .hcard-body { padding: 16px 20px; gap: 14px; }
+      .hcard-result-text { font-size: 13px; }
+      .hcard-footer { padding: 12px 20px; }
+
+      /* ── Grid stacking ── */
       .why-grid,
       .service-layout,
       .why-us-grid,
-      .case-box { grid-template-columns: 1fr; gap: 32px; }
+      .case-box { grid-template-columns: 1fr; gap: 24px; }
 
+      /* ── Pain ── */
       .pain-grid { grid-template-columns: 1fr; }
-      .flow-item { grid-template-columns: 1fr; }
-      .flow-meta { border-right: none; border-bottom: 1px solid var(--border); }
+      .pain-item { padding: 24px 20px; }
+      .pain-grid { margin-top: 36px; }
 
-      .cta-card { padding: 32px 24px; }
-      footer { flex-direction: column; gap: 24px; }
+      /* ── Why Now ── */
+      #why-now { padding: 56px 20px; }
+      .why-grid { margin-top: 36px; gap: 20px; }
+      .insight-box { padding: 28px 22px; }
+      .insight-box h3 { font-size: 20px; }
+
+      /* ── Service ── */
+      .service-layout { margin-top: 36px; }
+      .service-summary { padding: 24px 20px; }
+      .summary-stat-num { font-size: 40px; }
+      .summary-stat-num span { font-size: 18px; }
+
+      /* ── Flow ── */
+      .flow-list { margin-top: 36px; }
+      .flow-item { grid-template-columns: 1fr; }
+      .flow-meta {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 18px 20px;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+      }
+      .flow-step-time { font-size: 20px; }
+      .flow-content { padding: 20px 20px; }
+
+      /* ── Why Us ── */
+      .why-us-grid { margin-top: 36px; gap: 16px; }
+      .wuc-top { padding: 22px 20px 18px; }
+      .wuc-title { font-size: 18px; }
+      .wuc-body { padding: 18px 20px; }
+
+      /* ── Case ── */
+      .case-box { margin-top: 36px; }
+      .case-left {
+        padding: 32px 24px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      .case-left h3 { font-size: 19px; }
+      .case-right { padding: 28px 24px; }
+
+      /* ── CTA / Form ── */
+      #cta { padding: 56px 20px; }
+      .cta-card { padding: 28px 20px; }
+      .form-row { grid-template-columns: 1fr; }
+
+      /* ── Footer ── */
+      footer { flex-direction: column; gap: 24px; padding: 40px 20px 28px; }
       .footer-right { align-items: flex-start; }
       .footer-address { text-align: left; }
+      .footer-copy { margin-top: 24px; padding-top: 20px; }
     }
   </style>
 </head>
